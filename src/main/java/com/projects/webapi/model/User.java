@@ -2,21 +2,20 @@ package com.projects.webapi.model;
 
 import com.projects.webapi.model.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
 
 @Entity
-@Table
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -26,7 +25,6 @@ public class User implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
-    private String email;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -36,7 +34,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
