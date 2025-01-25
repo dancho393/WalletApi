@@ -27,10 +27,10 @@ public class RegisterUserService implements RegisterUserOperation {
     }
     private User buildUser(RegisterUserRequest request){
         return User.builder()
-                .username(request.username())
-                .password(passwordEncoder.encode(request.password()))
-                .firstName(request.firstName())
-                .lastName(request.lastName())
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
                 .role(Role.USER)
                 .build();
     }
