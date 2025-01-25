@@ -23,11 +23,11 @@ public class LoginUserService implements LoginUserOperation {
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.username(),
-                        request.password()
+                        request.getUsername(),
+                        request.getPassword()
                 )
         );
-        var user = userRepository.findByUsername(request.username())
+        var user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(()->new EntityNotFoundException("User Not Found"));
         var jwtToken =jwtService.generateToken(user);
 
