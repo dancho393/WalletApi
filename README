@@ -44,3 +44,45 @@ Follow these steps to set up and run the project:
        Paste the token into the Authorize field in the Swagger UI.
    
       Note: The waller endpoints require authentication because Spring Security is enabled.
+      Note: The valid currencies for Wallet are USD,EUR,GBP,JPY,AUD,CAD,CHF,BGN,CNY,INR
+
+Technologies Used
+
+    Java:  For backend development.
+    Spring Boot: For RESTful API creation.
+    Maven: Build automation and dependency management.
+    Docker: Containerization for consistent environment setup.
+    Swagger: API documentation and testing interface.
+    PostgreSQL: Database for storing application data.
+
+Project Structure
+
+The project follows a modular structure with packages designed for specific purposes:
+
+    api:
+       Provides request/response objects and defines operation interfaces for abstraction,
+       ensuring separation of concerns and flexibility in extending the application.
+
+    config:
+       Contains the configuration files for the application,
+       including security, database, and other environment-specific setups.
+
+    controller:
+       Hosts the controllers that expose RESTful endpoints for the API.
+       This is where the client requests are handled and forwarded to the service layer.
+
+    exception:
+       Includes custom exception classes to handle errors gracefully 
+       and provide meaningful error responses to the client.
+
+    model:
+       Represents the database entities. 
+       These are the Java classes annotated with JPA annotations to map to database tables.
+
+    repo:
+    Contains the repository interfaces responsible 
+    for data manipulation and interaction with the database. Spring Data JPA is used for efficient CRUD operations.
+
+    service:
+       Houses the business logic of the application. 
+       This layer processes requests from the controllers, interacts with the repository layer, and implements the core functionality of the API.
