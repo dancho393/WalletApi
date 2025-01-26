@@ -44,6 +44,7 @@ Follow these steps to set up and run the project:
        Paste the token into the Authorize field in the Swagger UI.
    
       Note: The waller endpoints require authentication because Spring Security is enabled.
+      Note: The valid currencies for Wallet are USD,EUR,GBP,JPY,AUD,CAD,CHF,BGN,CNY,INR
 
 Technologies Used
 
