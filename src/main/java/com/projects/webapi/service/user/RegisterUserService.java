@@ -4,6 +4,7 @@ import com.projects.webapi.api.user.register.RegisterUserDTO;
 import com.projects.webapi.api.user.register.RegisterUserOperation;
 import com.projects.webapi.api.user.register.RegisterUserRequest;
 import com.projects.webapi.api.user.register.RegisterUserResponse;
+import com.projects.webapi.exception.UsernameAlreadyExists;
 import com.projects.webapi.model.User;
 import com.projects.webapi.model.enums.Role;
 import com.projects.webapi.repo.UserRepository;
@@ -20,6 +21,9 @@ public class RegisterUserService implements RegisterUserOperation {
     @Override
     @Transactional
     public RegisterUserResponse execute(RegisterUserRequest request) {
+        if(userRepository.existsByUsername(request.getUsername())) {
+            throw new UsernameAlreadyExists("Sorry But This Username Already Exists");
+        }
             User user = buildUser(request);
             User savedUser = userRepository.save(user);
             return buildResponse(user);
