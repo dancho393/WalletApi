@@ -1,6 +1,15 @@
 package com.projects.webapi.model.enums;
 
 public enum Currency {
+    USD,
     EUR,
-    BGN
+    GBP,
+    JPY,
+    AUD,
+    CAD,
+    CHF,
+    BGN,
+    CNY,
+    INR
 }
+
