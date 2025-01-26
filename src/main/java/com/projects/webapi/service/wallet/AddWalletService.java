@@ -31,18 +31,22 @@ public class AddWalletService implements AddWalletOperation {
 
 
     }
-    private Wallet buildWallet(AddWalletRequest request,User user){
+    private Wallet buildWallet(AddWalletRequest request, User user) {
+        return Wallet.builder()
+                .balance(0.0)
+                .user(user)
+                .currency(parseCurrency(request.getCurrency()))
+                .build();
+    }
+
+    private Currency parseCurrency(String currency) {
         try {
-            return Wallet.builder()
-                    .balance(0.0)
-                    .user(user)
-                    .currency(Currency.valueOf(request.getCurrency()))
-                    .build();
-        }
-        catch (InvalidEnumException e){
-            throw new InvalidEnumException("Invalid currency");
+            return Currency.valueOf(currency);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidEnumException("Invalid currency: " + currency);
         }
     }
+
     private AddWalletResponse buildWalletResponse(
             Wallet wallet){
 
