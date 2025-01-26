@@ -26,7 +26,7 @@ public class RegisterUserService implements RegisterUserOperation {
         }
             User user = buildUser(request);
             User savedUser = userRepository.save(user);
-            return buildResponse(user);
+            return buildResponse(savedUser);
 
     }
     private User buildUser(RegisterUserRequest request){
